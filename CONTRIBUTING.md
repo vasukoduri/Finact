@@ -31,6 +31,6 @@ Releases are published by `.github/workflows/release.yml`, using PyPI trusted pu
 
 1. Update `version` in `pyproject.toml` and `__version__` in `src/finact/__init__.py`, and add a `## X.Y.Z` section to `CHANGELOG.md`.
 2. Push to `main` and check that CI is green.
-3. Tag and push: `git tag vX.Y.Z && git push origin vX.Y.Z`.
+3. Either push a tag (`git tag vX.Y.Z && git push origin vX.Y.Z`), or open **Actions → Release → Run workflow** on `main`, which creates the `vX.Y.Z` tag from the package version.
 
 The workflow refuses to publish if the tag and the version differ. It then runs the tests, builds the package, uploads it to https://pypi.org/project/finact/ and creates the GitHub release, using that version's CHANGELOG section as the notes and attaching the built files.

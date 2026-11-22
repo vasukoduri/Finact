@@ -1,7 +1,8 @@
 name: Release
 
-# Publishes to PyPI and creates the GitHub release when a version tag (vX.Y.Z) is pushed.
-# Also runs when a release is published in the GitHub UI, or manually (workflow_dispatch).
+# Publishes to PyPI and creates the GitHub release when a version tag (vX.Y.Z) is pushed,
+# or when the workflow is run manually from the Actions tab ("Run workflow" on main), in which
+# case the vX.Y.Z tag is created from the package version. Also runs for releases published in the UI.
 # Uses PyPI trusted publishing (OIDC): no API tokens or passwords are stored in the repo.
 
 on:
@@ -81,7 +82,8 @@ jobs:
   github-release:
     name: Create GitHub release
     needs: build
-    if: github.event_name == 'push'
+    # tag pushes and manual runs; a release published in the UI already exists
+    if: github.event_name != 'release'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -89,12 +91,17 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: dist
-      - name: Create the release with the built files attached
+      - name: Create the release (and the tag, on manual runs) with the built files attached
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" dist/* \
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            TAG="$GITHUB_REF_NAME"; TARGET="--verify-tag"
+          else
+            VERSION=$(ls dist/*.tar.gz | sed -E 's|dist/finact-(.*)\.tar\.gz|\1|')
+            TAG="v$VERSION"; TARGET="--target $GITHUB_SHA"
+          fi
+          gh release create "$TAG" dist/* $TARGET \
             --repo "$GITHUB_REPOSITORY" \
-            --title "finact $GITHUB_REF_NAME" \
-            --notes-file release-notes.md \
-            --verify-tag
+            --title "finact $TAG" \
+            --notes-file release-notes.md
