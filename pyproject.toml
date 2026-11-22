@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "finact"
+version = "0.1.0"
+description = "Security testing for AI agents in banking: checks whether LLM agents with banking tools can be manipulated into unauthorized transfers, account takeover, step-up bypass or acting on injected instructions."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "Vasu Koduri" }]
+keywords = ["llm", "ai-agents", "agent-security", "tool-use", "red-teaming", "banking", "fintech", "prompt-injection", "excessive-agency", "bola"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Financial and Insurance Industry",
+  "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Security",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = ["PyYAML>=6.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pytest-cov>=4", "ruff>=0.5"]
+
+[project.scripts]
+finact = "finact.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/vasukoduri/finact"
+Issues = "https://github.com/vasukoduri/finact/issues"
+Changelog = "https://github.com/vasukoduri/finact/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/vasukoduri/finact#readme"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S"]
+ignore = ["S101", "S311", "E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S"]

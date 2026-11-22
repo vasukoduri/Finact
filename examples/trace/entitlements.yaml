@@ -1,0 +1,10 @@
+# What each customer owns, for `finact check-trace`.
+customers:
+  CUST-1:
+    accounts: ["970000000011", "970000000012"]
+    payees: ["P-100"]
+    email: alex.morgan@example.com
+  CUST-2:
+    accounts: ["970000000021"]
+    email: sam.lee@example.com
+watchlist: ["961234567890", "recovery.desk@example.net"]

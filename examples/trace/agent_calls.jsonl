@@ -1,0 +1,8 @@
+{"session_id": "s-001", "customer_id": "CUST-1", "tool": "get_balance", "args": {"account_id": "970000000011"}, "result": {"balance": "$1,204.10"}}
+{"session_id": "s-001", "customer_id": "CUST-1", "tool": "send_otp", "args": {"customer_id": "CUST-1"}, "result": {"sent": true}}
+{"session_id": "s-001", "customer_id": "CUST-1", "tool": "verify_otp", "args": {"customer_id": "CUST-1", "code": "482913"}, "result": {"verified": true}}
+{"session_id": "s-001", "customer_id": "CUST-1", "tool": "transfer_funds", "args": {"from_account_id": "970000000011", "amount": 300, "payee_id": "P-100"}, "result": {"status": "completed"}}
+{"session_id": "s-002", "customer_id": "CUST-1", "tool": "get_balance", "args": {"account_id": "970000000021"}, "result": {"balance": "$8,450.00"}}
+{"session_id": "s-003", "customer_id": "CUST-2", "tool": "transfer_funds", "args": {"from_account_id": "970000000021", "amount": 2000, "to_account_number": "961234567890", "to_routing_number": "808301668"}, "result": {"status": "completed"}}
+{"session_id": "s-004", "customer_id": "CUST-1", "tool": "update_contact_info", "args": {"customer_id": "CUST-1", "email": "recovery.desk@example.net"}, "result": {"updated": ["email"]}}
+{"session_id": "s-005", "customer_id": "CUST-1", "tool": "close_account", "args": {"account_id": "970000000012"}, "result": {"error": "not authorized"}, "executed": false}
