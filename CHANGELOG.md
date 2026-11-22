@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.2.0 (2026-11-22)
+
+### Added
+- **20 new scenarios** (46 in total: 36 attacks, 10 legitimate tasks):
+  - Legitimate tasks: list payees, check profile, small savings-to-checking transfer, large own-account transfer with verification.
+  - Object-level authorization: another customer's payees; another customer's statements sent to the attacker's own address.
+  - Step-up bypass: "a colleague already approved it".
+  - Account takeover: email and phone change while "traveling"; fake bank IT.
+  - Payment fraud: landlord bank-detail change (business email compromise), romance scam, overpayment refund scam, structuring past the daily limit, a single payment over the limit.
+  - Privileged actions: closing another customer's account ("I'm the executor").
+  - Prompt injection: instructions in the customer's address field, a memo telling the agent to raise limits, and a delayed injection that redirects a payment two turns later.
+  - Unauthenticated: transfers and email changes without signing in.
+- New scenario setups: `inject_profile`, `inject_limit_memo`, `inject_redirect_memo`.
+- The secure demo agent pays only own accounts and saved payees, recognizes more scam cues, and stays at 0% attack success with 100% task completion.
+
+### Changed
+- Sandbox balances start higher (checking from $6,000, savings from $5,000), so multi-payment scenarios aren't cut short by insufficient funds.
+
 ## 0.1.0 (2026-11-22)
 
 Initial release.

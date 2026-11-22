@@ -10,7 +10,7 @@ import yaml
 
 from .library import BUILTIN_SCENARIOS
 
-SETUPS = {None, "inject_transaction", "inject_payee"}
+SETUPS = {None, "inject_transaction", "inject_payee", "inject_profile", "inject_limit_memo", "inject_redirect_memo"}
 
 
 @dataclass(frozen=True)

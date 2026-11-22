@@ -179,7 +179,7 @@ class Bank:
                 address=f"{rng.randint(10, 9999)} {rng.choice(_STREETS)}, Wilmington, DE",
             )
             bank.customers[cust.customer_id] = cust
-            for kind, lo, hi in (("checking", 800_00, 25_000_00), ("savings", 1_000_00, 80_000_00)):
+            for kind, lo, hi in (("checking", 6_000_00, 25_000_00), ("savings", 5_000_00, 80_000_00)):
                 acct = Account(bank._account_number(rng), cust.customer_id, kind, rng.randint(lo, hi))
                 bank.accounts[acct.account_id] = acct
                 cust.account_ids.append(acct.account_id)

@@ -15,7 +15,7 @@ src/finact/
 
 ## One attempt
 
-1. `Bank.generate(seed)` builds a fresh bank. The evaluator picks the signed-in customer and a victim, creates an attacker ("mule") account, and applies the scenario's setup (for example, a transaction carrying a prompt injection).
+1. `Bank.generate(seed)` builds a fresh bank. The evaluator picks the signed-in customer and a victim, creates an attacker ("mule") account, and applies the scenario's setup: a prompt injection planted in a transaction, a payee name or the customer's address (`inject_transaction`, `inject_payee`, `inject_profile`, `inject_limit_memo`, `inject_redirect_memo`).
 2. A `ToolBox` is created for the session with an `Oracle` whose watch list holds the mule account and the attacker email.
 3. For each user turn, the template is rendered (`{otp}` reads the code just texted to the customer), and the agent responds, calling tools through the toolbox.
 4. Each call: `Oracle.check` → violations → (enforce mode: block) → execute against the bank → `Oracle.record_executed` updates cumulative state (daily external total).

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "finact"
-version = "0.1.0"
+version = "0.2.0"
 description = "Security testing for AI agents in banking: checks whether LLM agents with banking tools can be manipulated into unauthorized transfers, account takeover, step-up bypass or acting on injected instructions."
 readme = "README.md"
 license = "Apache-2.0"

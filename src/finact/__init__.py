@@ -9,7 +9,7 @@ Quick start::
     print(report.summary())
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 from .agents import Agent, AgentContext, CallableAgent, OpenAIToolAgent  # noqa: E402
 from .bank import Bank  # noqa: E402
