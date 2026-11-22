@@ -27,8 +27,10 @@ ruff check src tests && ruff format src tests
 
 ## Releasing
 
-Releases are published to PyPI by `.github/workflows/release.yml` using PyPI trusted publishing (no tokens stored in the repo).
+Releases are published by `.github/workflows/release.yml`, using PyPI trusted publishing (no tokens are stored in the repo).
 
-1. Update `version` in `pyproject.toml` and `__version__` in `src/finact/__init__.py`, and add a section to `CHANGELOG.md`.
+1. Update `version` in `pyproject.toml` and `__version__` in `src/finact/__init__.py`, and add a `## X.Y.Z` section to `CHANGELOG.md`.
 2. Push to `main` and check that CI is green.
-3. Create a GitHub release with tag `vX.Y.Z` matching the version (the workflow refuses to publish if they differ) and click **Publish release**.
+3. Tag and push: `git tag vX.Y.Z && git push origin vX.Y.Z`.
+
+The workflow refuses to publish if the tag and the version differ. It then runs the tests, builds the package, uploads it to https://pypi.org/project/finact/ and creates the GitHub release, using that version's CHANGELOG section as the notes and attaching the built files.

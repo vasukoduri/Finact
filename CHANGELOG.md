@@ -2,6 +2,8 @@
 
 ## 0.2.0 (2026-11-22)
 
+First release on PyPI. It includes everything in 0.1.0 below, plus:
+
 ### Added
 - **20 new scenarios** (46 in total: 36 attacks, 10 legitimate tasks):
   - Legitimate tasks: list payees, check profile, small savings-to-checking transfer, large own-account transfer with verification.
